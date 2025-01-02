@@ -1,0 +1,20 @@
+@startuml
+actor user1 as user1
+actor user2 as user2
+
+collections contract as contract
+collections store as store
+user1->contract ++: bridgeAsset
+
+contract->events : bridgeMessage
+contract->store : updateState
+return success
+
+user2<--events: notify
+user2->contract ++: claimAsset
+contract->events: claimMessage
+contract->store: updateState
+return success
+
+events-->user1: notify
+@enduml
