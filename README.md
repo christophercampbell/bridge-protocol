@@ -1,4 +1,5 @@
-==============================================================================
-bridge protocol TLA+ model
+# Bridge Protocol TLA+ Model
 
-[./bridge-protocol.png]
+This project models the high level actor state for the bridge protocol in TLA+
+
+![image](./bridge-protocol.png)
