@@ -45,7 +45,7 @@ Init ==
     4) pc' updated to the next step label
 ****************************************************************)
 
-\* ------------------------ Sender ACTIONS ------------------------
+\* ------------------------ SENDER ACTIONS ------------------------
 S_BEGIN_Act ==
     /\ pc[Sender] = "S_BEGIN"
     \* (No extra conditions, can move on immediately)
@@ -65,7 +65,7 @@ S_DONE_Act ==
     /\ pc' = pc
     /\ UNCHANGED << contractState, storeState, eventsMessage, senderNotified, receiverNotified >>
 
-\* ------------------------ receiver ACTIONS ------------------------
+\* ------------------------ RECEIVER ACTIONS ------------------------
 R_WAIT_NOTIFICATION_Act ==
     /\ pc[Receiver] = "R_WAIT_NOTIFICATION"
     /\ receiverNotified = TRUE
@@ -155,7 +155,7 @@ S_MONITOR_Act ==
     /\ UNCHANGED <<contractState, storeState, eventsMessage, senderNotified, receiverNotified>>
 
 (****************************************************************
- Next is the disjunction of all sub-actions. In each state step, 
+ Next is the disjunction of all sub-actions. In each state step,
  exactly one sub-action can fire (unless concurrency is possible).
 ****************************************************************)
 Next ==
@@ -190,7 +190,7 @@ vars == <<pc, contractState, storeState, eventsMessage, senderNotified, receiver
 Spec == Init /\ [][Next]_vars
 
 (****************************************************************
- Next step is to add invariants, fairness, etc. For now, 
+ Next step is to add invariants, fairness, etc. For now,
  "Spec" is sufficient to run a basic model check in TLC.
 ****************************************************************)
 
