@@ -1,20 +1,23 @@
 @startuml
-actor user1 as user1
-actor user2 as user2
+participant sender
+participant receiver
+collections contract
+collections store
+collections events
 
-collections contract as contract
-collections store as store
-user1->contract ++: bridgeAsset
+sender->contract ++ #gold: bridgeAsset
 
 contract->events : bridgeMessage
 contract->store : updateState
 return success
 
-user2<--events: notify
-user2->contract ++: claimAsset
+receiver<--events: notify
+
+receiver->contract ++ #green: claimAsset
+
 contract->events: claimMessage
 contract->store: updateState
 return success
 
-events-->user1: notify
+events-->sender: notify
 @enduml
